@@ -1,11 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function MoviesList({ movies }) {
-  console.log("moviesList", movies);
   return (
     <ul>
       {movies.map(({ Title, Poster, Type, Year, imdbID }) => {
-        return <li key={imdbID}>{Title}</li>;
+        return (
+          <li key={imdbID}>
+            <Link to={`/movie/${imdbID}`}>
+              {Title}, {Year}
+            </Link>
+          </li>
+        );
       })}
     </ul>
   );

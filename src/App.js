@@ -1,12 +1,19 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import Search from "./components/Search";
+import MoviesSearch from "./components/MoviesSearch";
+import MovieDetail from "./pages/MovieDetail";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Movies search</h1>
-      <Search />
-    </div>
+    <Router>
+      <div className="App">
+        <h1>Movies search</h1>
+      </div>
+      <Routes>
+        <Route path="/" element={<MoviesSearch />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Movies from "./MoviesList";
 
-const baseURL = "http://www.omdbapi.com/";
-const apikey = "2b50e0d8";
-const page = 1;
+export const baseURL = "http://www.omdbapi.com/";
+export const apikey = "2b50e0d8";
+export const page = 1;
 
-function Search() {
+function MoviesSearch() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState({ isError: false, msg: "" });
@@ -46,18 +46,16 @@ function Search() {
 
   return (
     <main>
-      <form>
-        <input
-          type="text"
-          placeholder="Search"
-          value={query}
-          onChange={handleChange}
-        />
-      </form>
+      <input
+        type="text"
+        placeholder="Search"
+        value={query}
+        onChange={handleChange}
+      />
       {error.isError && <p>{error.msg}</p>}
       {movies?.length > 0 && <Movies movies={movies} />}
     </main>
   );
 }
 
-export default Search;
+export default MoviesSearch;
