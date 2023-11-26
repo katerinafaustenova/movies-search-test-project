@@ -5,14 +5,11 @@ import { ReactComponent as Star } from "../assets/star.svg";
 import Spinner from "../components/Spinner";
 import styles from "./MovieDetail.module.css";
 
-// todo fixnout local storage (maze to jine idcko)
-
 function MovieDetail() {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState({ isError: false, msg: "" });
   const [favorites, setFavorites] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -39,10 +36,8 @@ function MovieDetail() {
 
   useEffect(() => {
     const favoriteIds = JSON.parse(localStorage.getItem("favorites"));
-    if (favoriteIds?.length > 0 && favoriteIds.find((item) => item === id)) {
-      setIsFavorite(true);
-    } else setIsFavorite(false);
-  }, [id, favorites]);
+    favoriteIds?.length > 0 && setFavorites(favoriteIds);
+  }, []);
 
   const handleSetFavorites = (newFavorites) => {
     setFavorites(newFavorites);
@@ -82,6 +77,7 @@ function MovieDetail() {
   } = movie;
 
   const ReleaseDate = new Date(Released);
+  const isFavorite = favorites.find((item) => item === id);
 
   return (
     <main className={styles.main}>
