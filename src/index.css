@@ -31,6 +31,6 @@ a {
 .container {
   position: relative;
   min-height: 100vh;
-  max-width: 992px;
+  max-width: 1024px;
   margin: 0 auto;
 }

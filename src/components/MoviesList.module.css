@@ -6,7 +6,8 @@
 }
 
 .item {
-  margin-bottom: 10px;
+  position: relative;
+  margin-bottom: 16px;
   padding: 10px 20px;
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
@@ -29,4 +30,84 @@
 .title {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.year {
+  font-size: 1.1rem;
+  color: #bababa;
+}
+
+.starBtn {
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 0 10px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.starBtn polygon {
+  fill: #6f6f6f;
+}
+
+.starBtn:hover polygon {
+  fill: #f0c000;
+}
+
+.isFavorite polygon {
+  fill: #eed25e;
+}
+
+@media all and (max-width: 660px) {
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .item {
+    width: calc(50% - 48px);
+    margin-bottom: 0;
+  }
+
+  .link {
+    flex-direction: column;
+  }
+
+  .image {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .year {
+    font-size: 0.9rem;
+    color: #bababa;
+  }
+
+  .starBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+@media all and (max-width: 420px) {
+  .item {
+    width: 100%;
+  }
+
+  .image {
+    max-width: 200px;
+  }
 }

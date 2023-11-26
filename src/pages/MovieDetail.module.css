@@ -1,18 +1,18 @@
 .main {
-  padding: 45px 0;
+  padding: 35px 16px;
   display: flex;
   flex-direction: column;
 }
 
 .header {
   display: flex;
-  align-items: center;
   margin-bottom: 32px;
 }
 
 .back {
   position: absolute;
   left: -140px;
+  top: 46px;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.3);
   padding: 10px 20px;
@@ -24,7 +24,6 @@
 }
 
 .title {
-  text-align: center;
   margin-bottom: 0;
 }
 
@@ -37,7 +36,37 @@
   margin-right: 40px;
 }
 
-.text > p:first-child {
+.text {
+  position: relative;
+}
+
+.starBtn {
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: -15px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  padding: 0 10px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.starBtn polygon {
+  fill: #6f6f6f;
+}
+
+.starBtn:hover polygon {
+  fill: #f0c000;
+}
+
+.isFavorite polygon {
+  fill: #eed25e;
+}
+
+.text > p:first-of-type {
   margin-top: 0;
 }
 
@@ -48,4 +77,46 @@
 
 .label {
   font-weight: bold;
+}
+
+@media all and (max-width: 1320px) {
+  .main {
+    padding: 64px 16px;
+  }
+
+  .back {
+    left: 16px;
+    top: 16px;
+  }
+}
+
+@media all and (max-width: 992px) {
+  .image {
+    margin-right: 25px;
+  }
+}
+
+@media all and (max-width: 660px) {
+  .header {
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .image {
+    margin-right: 0;
+  }
+
+  .text > p {
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
 }

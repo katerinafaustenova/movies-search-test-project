@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import MoviesList from "./MoviesList";
 import styles from "./MoviesSearch.module.css";
-
-export const baseURL = "http://www.omdbapi.com/";
-export const apikey = "2b50e0d8";
-export const page = 1;
+import Spinner from "./Spinner";
 
 function MoviesSearch() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ isError: false, msg: "" });
-
-  // TODO LOADING !
 
   useEffect(() => {
     if (query === "") {
@@ -19,8 +15,9 @@ function MoviesSearch() {
       setError({ isError: false, msg: "" });
     } else {
       const fetchFn = setTimeout(async () => {
+        setLoading(true);
         try {
-          const fetchURL = `${baseURL}?apikey=${apikey}&s=${query}&page=${page}`;
+          const fetchURL = `${process.env.REACT_APP_BASE_URL}?apikey=${process.env.REACT_APP_APIKEY}&s=${query}&page=1`;
           const response = await fetch(fetchURL);
           const result = await response.json();
 
@@ -31,11 +28,13 @@ function MoviesSearch() {
             setMovies([]);
             setError({ isError: true, msg: result.Error });
           }
+          setLoading(false);
         } catch (error) {
           setError({
             isError: true,
-            msg: "There is an error while fetching movies. Please try again later",
+            msg: "There is an error while fetching movies. Please try again later.",
           });
+          setLoading(false);
         }
       }, 1000);
 
@@ -49,7 +48,7 @@ function MoviesSearch() {
 
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>Movies search</h1>
+      <h1 className={styles.title}>Search Movies</h1>
       <input
         type="text"
         placeholder="Search"
@@ -57,6 +56,7 @@ function MoviesSearch() {
         onChange={handleChange}
         className={styles.input}
       />
+      {loading && <Spinner />}
       {error.isError && <p className={styles.error}>{error.msg}</p>}
       {movies?.length > 0 && <MoviesList movies={movies} />}
     </main>
