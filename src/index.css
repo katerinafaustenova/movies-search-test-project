@@ -29,6 +29,7 @@ a {
 }
 
 .container {
+  position: relative;
   min-height: 100vh;
   max-width: 992px;
   margin: 0 auto;
