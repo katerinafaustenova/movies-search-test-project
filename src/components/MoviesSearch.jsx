@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Movies from "./MoviesList";
+import MoviesList from "./MoviesList";
+import styles from "./MoviesSearch.module.css";
 
 export const baseURL = "http://www.omdbapi.com/";
 export const apikey = "2b50e0d8";
@@ -9,6 +10,8 @@ function MoviesSearch() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState({ isError: false, msg: "" });
+
+  // TODO LOADING !
 
   useEffect(() => {
     if (query === "") {
@@ -45,15 +48,17 @@ function MoviesSearch() {
   };
 
   return (
-    <main>
+    <main className={styles.main}>
+      <h1 className={styles.title}>Movies search</h1>
       <input
         type="text"
         placeholder="Search"
         value={query}
         onChange={handleChange}
+        className={styles.input}
       />
-      {error.isError && <p>{error.msg}</p>}
-      {movies?.length > 0 && <Movies movies={movies} />}
+      {error.isError && <p className={styles.error}>{error.msg}</p>}
+      {movies?.length > 0 && <MoviesList movies={movies} />}
     </main>
   );
 }

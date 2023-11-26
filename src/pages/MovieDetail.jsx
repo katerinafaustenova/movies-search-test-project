@@ -46,12 +46,12 @@ function MovieDetail() {
   } = movie;
 
   return (
-    <div>
+    <main>
+      <h1 className="title">
+        {Title}, {Year}
+      </h1>
       <div>
         <img src={Poster} alt="Poster" />
-        <h2>
-          {Title}, {Year}
-        </h2>
         <p>Language: {Language}</p>
         <p>Actors: {Actors}</p>
         <p>Description: {Plot}</p>
@@ -65,7 +65,7 @@ function MovieDetail() {
       </div>
       {/* TODO mam pri prechodu zpet ulozit predchozi data hledani ? */}
       <Link to={`/`}>Zpět</Link>
-    </div>
+    </main>
   );
 }
 
