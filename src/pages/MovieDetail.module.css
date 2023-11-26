@@ -10,6 +10,9 @@
 }
 
 .back {
+  border: none;
+  outline: none;
+  color: #fff;
   position: absolute;
   left: -140px;
   top: 46px;

@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { ReactComponent as Star } from "../assets/star.svg";
 import Spinner from "../components/Spinner";
 import styles from "./MovieDetail.module.css";
+
+// todo fixnout local storage (maze to jine idcko)
 
 function MovieDetail() {
   const [movie, setMovie] = useState({});
@@ -13,6 +14,7 @@ function MovieDetail() {
   const [favorites, setFavorites] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFn = async () => {
@@ -84,9 +86,9 @@ function MovieDetail() {
   return (
     <main className={styles.main}>
       <section className={styles.header}>
-        <Link to={`/`} className={styles.back}>
+        <button onClick={() => navigate(-1)} className={styles.back}>
           Back
-        </Link>
+        </button>
         <h1 className={styles.title}>{Title}</h1>
       </section>
       <section className={styles.content}>
@@ -131,7 +133,6 @@ function MovieDetail() {
           </p>
         </div>
       </section>
-      {/* TODO mam pri prechodu zpet ulozit predchozi data hledani ? */}
     </main>
   );
 }

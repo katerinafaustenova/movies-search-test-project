@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import MoviesList from "./MoviesList";
 import styles from "./MoviesSearch.module.css";
 import Spinner from "./Spinner";
@@ -8,6 +9,12 @@ function MoviesSearch() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ isError: false, msg: "" });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const queryParams = searchParams.get("q");
+    (queryParams || queryParams === "") && setQuery(queryParams);
+  }, [searchParams]);
 
   useEffect(() => {
     if (query === "") {
@@ -43,7 +50,7 @@ function MoviesSearch() {
   }, [query]);
 
   const handleChange = (e) => {
-    setQuery(e.target.value);
+    setSearchParams({ q: e.target.value });
   };
 
   return (
