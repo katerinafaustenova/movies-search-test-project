@@ -1,60 +1,17 @@
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate, useParams } from "react-router";
 import { ReactComponent as Star } from "../assets/star.svg";
 import Spinner from "../components/Spinner";
+import { useFavoriteMovies } from "../utils/useFavoriteMovies";
+import { useFetchMovieById } from "../utils/useFetchMovieById";
 import styles from "./MovieDetail.module.css";
 
 function MovieDetail() {
-  const [movie, setMovie] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState({ isError: false, msg: "" });
-  const [favorites, setFavorites] = useState([]);
   const { id } = useParams();
+  const [movie, loading, error] = useFetchMovieById(id);
+  const [favorites, toggleFavorite] = useFavoriteMovies();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchFn = async () => {
-      try {
-        const fetchURL = `${process.env.REACT_APP_BASE_URL}?apikey=${process.env.REACT_APP_APIKEY}&i=${id}`;
-        const response = await fetch(fetchURL);
-        const result = await response.json();
-        setMovie(result);
-        setError({ isError: false, msg: "" });
-        setLoading(false);
-      } catch (error) {
-        setError({
-          isError: true,
-          msg: "There is an error while fetching movie details. Please try again later.",
-        });
-        setMovie({});
-        setLoading(false);
-      }
-    };
-    fetchFn();
-  }, [id]);
-
-  useEffect(() => {
-    const favoriteIds = JSON.parse(localStorage.getItem("favorites"));
-    favoriteIds?.length > 0 && setFavorites(favoriteIds);
-  }, []);
-
-  const handleSetFavorites = (newFavorites) => {
-    setFavorites(newFavorites);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
-  };
-
-  const handleFavoriteToggle = (e, id) => {
-    e.preventDefault();
-    let newFavorites = [];
-    if (favorites.find((item) => item === id)) {
-      newFavorites = favorites.filter((item) => item !== id);
-      handleSetFavorites(newFavorites);
-    } else {
-      newFavorites = [...favorites, id];
-      handleSetFavorites(newFavorites);
-    }
-  };
 
   if (loading) return <Spinner />;
   if (error.isError) return <p>{error.msg}</p>;
@@ -77,7 +34,7 @@ function MovieDetail() {
   } = movie;
 
   const ReleaseDate = new Date(Released);
-  const isFavorite = favorites.find((item) => item === id);
+  const isFavorite = favorites?.find((item) => item === id);
 
   return (
     <main className={styles.main}>
@@ -91,7 +48,10 @@ function MovieDetail() {
         <img src={Poster} alt="Poster" className={styles.image} />
         <div className={styles.text}>
           <button
-            onClick={(e) => handleFavoriteToggle(e, id)}
+            onClick={(e) => {
+              e.preventDefault();
+              toggleFavorite(id);
+            }}
             className={classNames(styles.starBtn, {
               [styles.isFavorite]: isFavorite,
             })}
