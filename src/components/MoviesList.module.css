@@ -8,7 +8,6 @@
 .item {
   position: relative;
   margin-bottom: 16px;
-  padding: 10px 20px;
   background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
@@ -20,6 +19,7 @@
 .link {
   display: flex;
   align-items: center;
+  padding: 10px 20px;
 }
 
 .image {
@@ -37,32 +37,6 @@
   color: #bababa;
 }
 
-.starBtn {
-  background: none;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  padding: 0 10px;
-  margin-left: auto;
-  cursor: pointer;
-}
-
-.starBtn polygon {
-  fill: #6f6f6f;
-}
-
-.starBtn:hover polygon {
-  fill: #f0c000;
-}
-
-.isFavorite polygon {
-  fill: #eed25e;
-}
-
 @media all and (max-width: 660px) {
   .list {
     display: flex;
@@ -71,7 +45,7 @@
   }
 
   .item {
-    width: calc(50% - 48px);
+    width: calc(50% - 8px);
     margin-bottom: 0;
   }
 
@@ -93,12 +67,6 @@
   .year {
     font-size: 0.9rem;
     color: #bababa;
-  }
-
-  .starBtn {
-    position: absolute;
-    top: 0;
-    right: 0;
   }
 }
 

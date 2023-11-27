@@ -1,8 +1,7 @@
-import classNames from "classnames";
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Star } from "../assets/star.svg";
 import { useFavoriteMovies } from "../utils/useFavoriteMovies";
+import FavoriteButton from "./FavoriteButton";
 import styles from "./MoviesList.module.css";
 
 function MoviesList({ movies }) {
@@ -19,18 +18,12 @@ function MoviesList({ movies }) {
               <div className={styles.title}>
                 {Title}, <span className={styles.year}>{Year}</span>
               </div>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  toggleFavorite(imdbID);
-                }}
-                className={classNames(styles.starBtn, {
-                  [styles.isFavorite]: isFavorite,
-                })}
-              >
-                <Star />
-              </button>
             </Link>
+            <FavoriteButton
+              id={imdbID}
+              isFavorite={isFavorite}
+              toggleFavorite={toggleFavorite}
+            />
           </li>
         );
       })}

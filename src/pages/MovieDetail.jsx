@@ -1,7 +1,6 @@
-import classNames from "classnames";
 import React from "react";
 import { useNavigate, useParams } from "react-router";
-import { ReactComponent as Star } from "../assets/star.svg";
+import FavoriteButton from "../components/FavoriteButton";
 import Spinner from "../components/Spinner";
 import { useFavoriteMovies } from "../utils/useFavoriteMovies";
 import { useFetchMovieById } from "../utils/useFetchMovieById";
@@ -47,17 +46,6 @@ function MovieDetail() {
       <section className={styles.content}>
         <img src={Poster} alt="Poster" className={styles.image} />
         <div className={styles.text}>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              toggleFavorite(id);
-            }}
-            className={classNames(styles.starBtn, {
-              [styles.isFavorite]: isFavorite,
-            })}
-          >
-            <Star />
-          </button>
           <p>
             <span className={styles.label}>Year:</span> {Year}
           </p>
@@ -88,6 +76,12 @@ function MovieDetail() {
             <span className={styles.label}>Votes:</span> {imdbVotes}
           </p>
         </div>
+        <FavoriteButton
+          id={id}
+          isFavorite={isFavorite}
+          toggleFavorite={toggleFavorite}
+          positionTop
+        />
       </section>
     </main>
   );
