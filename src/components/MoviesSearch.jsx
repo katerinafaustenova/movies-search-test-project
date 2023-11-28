@@ -30,7 +30,7 @@ function MoviesSearch() {
   };
 
   const showPrevious = page > 1 && !error.isError;
-  const showNext = page < totalPages && !error.isError;
+  const showNext = query !== "" && page < totalPages && !error.isError;
 
   return (
     <main className={styles.main}>
