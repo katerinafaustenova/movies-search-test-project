@@ -29,6 +29,17 @@
   text-align: center;
 }
 
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.showPrevious {
+  justify-content: space-between;
+}
+
 @media all and (max-width: 660px) {
   .main {
     padding: 25px 16px;

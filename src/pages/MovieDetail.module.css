@@ -9,25 +9,16 @@
   margin-bottom: 32px;
 }
 
-.back {
-  border: none;
-  outline: none;
-  color: #fff;
+.btnBack {
   position: absolute;
   left: -140px;
   top: 46px;
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.back:hover {
-  background-color: rgba(0, 0, 0, 0.45);
 }
 
 .title {
+  width: 100%;
   margin-bottom: 0;
+  text-align: left;
 }
 
 .content {
@@ -48,10 +39,12 @@
 .text > p {
   margin-bottom: 0;
   margin-top: 20px;
+  line-height: 1.6;
 }
 
 .label {
   font-weight: bold;
+  margin-right: 5px;
 }
 
 @media all and (max-width: 1320px) {
@@ -59,7 +52,7 @@
     padding: 64px 16px;
   }
 
-  .back {
+  .btnBack {
     left: 16px;
     top: 16px;
   }
@@ -78,6 +71,7 @@
 
   .title {
     font-size: 32px;
+    text-align: center;
   }
 
   .content {
