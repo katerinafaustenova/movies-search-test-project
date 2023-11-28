@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavoriteButton renders correctly with is favorite and standard position 1`] = `
+<button
+  className="favoriteBtn isFavorite"
+  onClick={[Function]}
+>
+  <svg>
+    star.svg
+  </svg>
+</button>
+`;
+
+exports[`FavoriteButton renders correctly with is not favorite and position top 1`] = `
+<button
+  className="favoriteBtn positionTop"
+  onClick={[Function]}
+>
+  <svg>
+    star.svg
+  </svg>
+</button>
+`;
+
+exports[`FavoriteButton renders correctly with no id 1`] = `null`;
+
+exports[`FavoriteButton renders correctly with no props 1`] = `null`;

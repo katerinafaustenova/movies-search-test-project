@@ -5,10 +5,11 @@ import styles from "./FavoriteButton.module.css";
 
 function FavoriteButton({
   id,
-  isFavorite,
+  isFavorite = false,
   toggleFavorite,
   positionTop = false,
 }) {
+  if (!id || !toggleFavorite) return;
   return (
     <button
       onClick={(e) => {
