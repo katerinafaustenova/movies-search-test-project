@@ -30,6 +30,7 @@
   width: 100%;
   max-width: 320px;
   margin-right: 40px;
+  object-fit: contain;
 }
 
 .text > p:first-of-type {
@@ -59,6 +60,10 @@
 }
 
 @media all and (max-width: 992px) {
+  .content {
+    align-items: start;
+  }
+
   .image {
     margin-right: 25px;
   }
